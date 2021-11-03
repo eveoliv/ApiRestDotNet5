@@ -1,1 +1,17 @@
 2021-11-03 00:24:54.327 -03:00 [INF] Starting web host
+2021-11-03 00:24:56.359 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-11-03 00:24:56.377 -03:00 [INF] Hosting environment: Development
+2021-11-03 00:24:56.381 -03:00 [INF] Content root path: C:\Users\evert\source\csharp_workspace\AppNetCore5
+2021-11-03 00:24:56.430 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:64371/swagger/index.html - -
+2021-11-03 00:24:57.088 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:64371/swagger/index.html - - - 200 - text/html;charset=utf-8 663.1866ms
+2021-11-03 00:24:57.559 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:64371/_framework/aspnetcore-browser-refresh.js - -
+2021-11-03 00:24:57.571 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:64371/_framework/aspnetcore-browser-refresh.js - - - 200 3086 application/javascript;+charset=utf-8 11.4335ms
+2021-11-03 00:24:58.719 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:64371/swagger/v1/swagger.json - -
+2021-11-03 00:24:59.037 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:64371/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 318.9034ms
+2021-11-03 00:25:10.392 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:64371/api/v1/Modelo - -
+2021-11-03 00:25:10.556 -03:00 [INF] Executing endpoint 'AppNetCore5.Controllers.ModeloController.GetAllData (AppNetCore5)'
+2021-11-03 00:25:10.624 -03:00 [INF] Route matched with {action = "GetAllData", controller = "Modelo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllData() on controller AppNetCore5.Controllers.ModeloController (AppNetCore5).
+2021-11-03 00:25:11.491 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppNetCore5.Domain.Modelo, AppNetCore5, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-11-03 00:25:11.537 -03:00 [INF] Executed action AppNetCore5.Controllers.ModeloController.GetAllData (AppNetCore5) in 898.7164ms
+2021-11-03 00:25:11.540 -03:00 [INF] Executed endpoint 'AppNetCore5.Controllers.ModeloController.GetAllData (AppNetCore5)'
+2021-11-03 00:25:11.541 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:64371/api/v1/Modelo - - - 200 - application/json;+charset=utf-8 1149.4878ms
