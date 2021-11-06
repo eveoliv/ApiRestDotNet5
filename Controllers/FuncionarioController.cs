@@ -3,7 +3,7 @@ using AppNetCore5.Domain;
 using AppNetCore5.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using static AppNetCore5.Repository.RepositoryQuery;
+using static AppNetCore5.QueriesSql.FuncionarioSql;
 
 namespace AppNetCore5.Controllers
 {
@@ -13,9 +13,9 @@ namespace AppNetCore5.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     public class FuncionarioController : ControllerBase
     {
-        private readonly IRepository<Funcionario> repository;
         private readonly ILogger<FuncionarioController> logger;
-        public FuncionarioController(IRepository<Funcionario> repository, ILogger<FuncionarioController> logger)
+        private readonly IRepositoryBase<Funcionario> repository;
+        public FuncionarioController(IRepositoryBase<Funcionario> repository, ILogger<FuncionarioController> logger)
         {
             this.logger = logger;
             this.repository = repository;
@@ -26,7 +26,7 @@ namespace AppNetCore5.Controllers
         {
             try
             {
-                var data = repository.FindAll(QryFuncionarios());
+                var data = repository.FindAll(Funcionarios());
                 return Ok(data);
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace AppNetCore5.Controllers
         {            
             try
             {
-                var data = repository.FindId(QryFuncionarioId(id), id);
+                var data = repository.FindId(FuncionarioId(id), id);
                 return Ok(data);
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace AppNetCore5.Controllers
         {
             try
             {    
-                var result = repository.Insert(InsertFuncionario(fp));
+                var result = repository.Insert(FuncionarioInsert(fp));
                 return Ok(200);
             }
             catch (Exception ex)
@@ -71,7 +71,7 @@ namespace AppNetCore5.Controllers
         {
             try
             {              
-                var result = repository.Update(UpdateFuncionario(fp));
+                var result = repository.Update(FuncionarioUpdate(fp));
                 return Ok(200);
             }
             catch (Exception ex)
@@ -86,7 +86,7 @@ namespace AppNetCore5.Controllers
         {
             try
             {      
-                var result = repository.Delete(DeleteFuncionario(id));
+                var result = repository.Delete(FuncionarioDelete(id));
 
                 return Ok(200);
             }

@@ -13,5 +13,6 @@ namespace AppNetCore5.Domain
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public DateTime Data_Inclusao { get; set; }
+        
     }
 }

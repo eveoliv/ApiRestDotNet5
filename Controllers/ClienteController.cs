@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using AppNetCore5.Domain;
 using AppNetCore5.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using static AppNetCore5.Repository.RepositoryQuery;
+using static AppNetCore5.QueriesSql.ClienteSql;
 
 namespace AppNetCore5.Controllers
 {
@@ -12,10 +13,11 @@ namespace AppNetCore5.Controllers
     [ApiExplorerSettings(GroupName = "v1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class ClienteController : ControllerBase
-    {
-        private readonly IRepository<Cliente> repository;
-        private readonly ILogger<ClienteController> logger;
-        public ClienteController(IRepository<Cliente> repository, ILogger<ClienteController> logger)
+    {        
+        private readonly ILogger<ClienteController> logger;       
+        private readonly IRepositoryBase<Cliente> repository;
+
+        public ClienteController(ILogger<ClienteController> logger, IRepositoryBase<Cliente> repository)
         {
             this.logger = logger;
             this.repository = repository;
@@ -26,8 +28,7 @@ namespace AppNetCore5.Controllers
         {
             try
             {
-                var data = repository.FindAll(QryClientes());
-                return Ok(data);
+                return Ok( repository.FindAll(Clientes()));
             }
             catch (Exception ex)
             {
@@ -41,8 +42,7 @@ namespace AppNetCore5.Controllers
         {            
             try
             {
-                var data = repository.FindId(QryClienteId(id), id);
-                return Ok(data);
+                return Ok(repository.FindId(ClienteId(id), id));
             }
             catch (Exception ex)
             {
@@ -55,9 +55,8 @@ namespace AppNetCore5.Controllers
         public IActionResult PostCliente([FromBody, Bind("Nome, Cpf, Data_Inclusao")] ClientePost cp)
         {
             try
-            {    
-                var result = repository.Insert(InsertCliente(cp));
-                return Ok(200);
+            {             
+                return Ok(repository.Insert(ClienteInsert(cp)));
             }
             catch (Exception ex)
             {
@@ -70,9 +69,8 @@ namespace AppNetCore5.Controllers
         public IActionResult PutClientePorId([FromBody] Cliente cp)
         {
             try
-            {              
-                var result = repository.Update(UpdateCliente(cp));
-                return Ok(200);
+            {                             
+                return Ok(repository.Update(ClienteUpdate(cp)));
             }
             catch (Exception ex)
             {
@@ -85,10 +83,8 @@ namespace AppNetCore5.Controllers
         public IActionResult DeleteClientePorId(int id)
         {
             try
-            {      
-                var result = repository.Delete(DeleteCliente(id));
-
-                return Ok(200);
+            {                    
+                return Ok(repository.Delete(ClienteDelete(id)));
             }
             catch (Exception ex)
             {

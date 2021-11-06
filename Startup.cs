@@ -22,10 +22,12 @@ namespace AppNetCore5
         {
             services.AddMvcCore();
             services.AddControllers();
-            services.AddApiVersioning();
-            services.AddSingleton<IRepository<Cliente>, RepositoryBase<Cliente>>();
-            services.AddSingleton<IRepository<Funcionario>, RepositoryBase<Funcionario>>();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "AppNetCore5", Version = "v1" });});
+            services.AddApiVersioning();    
+            services.AddSingleton<IRepositoryClient<Trade>, RepositoryClientWs<Trade>>();
+            services.AddSingleton<IRepositoryBase<Cliente>, RepositoryBase<Cliente>>();
+            services.AddSingleton<IRepositoryBase<Funcionario>, RepositoryBase<Funcionario>>();
+            services.AddSwaggerGen(c => 
+            { c.SwaggerDoc("v1", new OpenApiInfo { Title = "AppNetCore5", Version = "v1" });});
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
